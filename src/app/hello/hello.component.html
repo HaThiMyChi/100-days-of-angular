@@ -1,0 +1,45 @@
+<p>hello works!</p>
+<h3>Your name: {{user.name}}</h3>
+<h4>Your name: {{user.age}}</h4>
+<div *ngIf="user.age >= 13; else noPG13">Ban co the xem noi dung PG-13</div>
+<ng-template #noPG13>
+    <div>Ban khong the xem noi dung PG-13</div>
+</ng-template>
+
+<!-- chuyển đổi sang dạng property binding như sau:
+
+<ng-template [ngIf]="user.age >= 13" [ngIfElse]="noPG13">
+  <div>Bạn có thể xem nội dung PG-13</div>
+</ng-template> -->
+
+
+<input type="text" [value]="user.name" />
+<button (click)="showInfo($event)">Click Me!</button>
+
+<br/>
+<br/>
+<!-- <input type="text" [ngModel]="user.name" (ngModelChange)="user.name = $event" /> -->
+<input type="text" [(ngModel)]="user.name" />
+
+
+<button (click)="showInfo1()">Click Me1111!</button>
+
+
+<br/><br/>
+<div *ngFor="let author of authors">
+    {{author.id}} - {{author.firstName}} - {{author.lastName}}
+</div>
+
+<hr/><hr/>
+
+<div *ngFor="let author of authors; index as idx; count as total">
+    ({{idx}})/({{total}}): {{author.id}} - {{author.firstName}}
+    {{author.lastName}}
+</div>
+
+<div *ngFor="let item of list">
+  <ng-container *ngIf="somethingGoood"> More code </ng-container>
+</div>
+<div *ngFor="let item of list">
+  <ng-template [ngIf]="somethingGoood"> More code </ng-template>
+</div>

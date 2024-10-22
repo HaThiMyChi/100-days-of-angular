@@ -1,0 +1,123 @@
+<!-- <app-hello></app-hello> -->
+<hr/>
+<!-- <app-progress-bar
+    [progress]="15"
+    [backgroundColor]="'#9e9e9e'"
+    [progressColor]="'#2e8b57'"
+></app-progress-bar> -->
+
+ <!-- two way binding  -->
+  <!-- <input type="text" [(ngModel)]="name" /> -->
+   <!-- Ban hieu nhu the nay goi la two way binding nhung vi viet gon nen [(ngModel)] -->
+   <!-- Thực chất cách viết nay là viết tắt của property binding và event binding -->
+<!-- <input type="text" [ngModel]="name" (ngModelChange)="name = $event" /> -->
+
+<!-- <app-author-list></app-author-list> -->
+
+<!-- # ten template variable (chua nhung component de hien thi ra) #nameVariabe -->
+ <!-- toggle la instance cua toggleComponent -->
+  <!-- No ko chay duoc neu no co dat dkien ngIf thi ben trong khi dat static true o viewchild, no ko chay dc ,
+   con neu khong dat static: true thi no chi chay trong ngAfterViewInit, khong chay vao dc ngOnInit -->
+<!-- <app-toggle #toggleComp [(checked)]="isChecked" ></app-toggle> -->
+
+<!-- toggle Button no la mot htmlButtonElement no se tham chieu den the DOM cua minh -->
+<!-- <button #toggleBtn (click)="toggleComp.toggle()">Toggle me</button> -->
+
+<br>
+<br>
+
+
+<!-- <input #nameInput type="text" [ngModel]="name" (ngModelChange)="name = $event"> -->
+
+
+<!-- Gia su co nhieu component thi lam sao thi dung viewchildren -->
+
+<!-- <button (click)="showLast = !showLast">Toggle show last</button> -->
+
+<!-- <app-toggle [(checked)]="isChecked" ></app-toggle>
+<app-toggle [(checked)]="isChecked" ></app-toggle>
+<app-toggle [(checked)]="isChecked" ></app-toggle> -->
+<!-- <ng-container *ngIf="showLast">
+    <app-toggle [(checked)]="isChecked" ></app-toggle>
+</ng-container> -->
+
+<!-- làm thế nào để chúng ta biến component Toggle trở nên linh động hơn mà không cần thêm Input nào. Có thể sử dụng ngay content được truyền vào (project)
+ -->
+
+ <!-- <app-toggle [(checked)]="questions.question1" header="Header 1" question="question 1" content="content 1">
+    <span>Question 1</span>
+ </app-toggle>
+
+ <br>
+
+ <app-toggle [(checked)]="questions.question2" header="Header 2" question="question 2" content="content 2">
+    <span>Question 2</span>
+ </app-toggle> -->
+
+ <!-- Minh truyen qua ng-content neu muon no hien thi dung vi tri thi truyen vao select (no nhan tag , class), hay xem lai ly thuyet . Con neu ko truyen
+  thi no range ra het o <ng-content> cuoi cung trong component -->
+ <!-- <app-toggle [(checked)]="questions.question1">
+    <h3>Header 1</h3>
+    <label>Question 1</label>
+    <p>Content 1</p>
+ </app-toggle>
+
+ <app-toggle [(checked)]="questions.question2">
+    <h3>Header 2</h3>
+    <span>Question 2</span>7
+    <p>Content 2</p>
+ </app-toggle> -->
+
+ <!-- Nếu bạn không đặt tên cho variable ở vế phải của dấu bằng, chỉ viết là let-name, thì khi truyền data qua context, property của object truyền vào sẽ là $implicit -->
+<!-- <ng-template #buttonTmpl let-label="label" let-className="className" let-icon="icon">
+   <button [ngClass]="['btn', className ? className : '']">
+      <i *ngIf="icon" class="fa {{icon}}"></i>
+      aadkdkddkddkddd
+   </button>
+</ng-template>
+
+<ng-container [ngTemplateOutlet]="buttonTmpl"
+   [ngTemplateOutletContext]="{label: 'Click here', className: 'btn-primary', icon:null}"
+   >
+</ng-container>
+
+<ng-container [ngTemplateOutlet]="buttonTmpl"
+   [ngTemplateOutletContext]="{label: 'Remove', className: 'btn-danger', icon: 'fa-remove'}"
+   >
+</ng-container> -->
+
+<!-- <app-tab-group [(tabActiveIndex)]="currentIndex">
+   <app-tab-panel title="Tab 1">Content tab 1</app-tab-panel>
+   <app-tab-panel title="Tab 2">Content tab 2</app-tab-panel>
+   <app-tab-panel title="Tab 3">Content tab 3</app-tab-panel>
+</app-tab-group> -->
+
+<button class="btn btn-primary" (click)="showTab4 = !showTab4">Toggle tag 4</button>
+<tab-bs-group [(tabActiveIndex)]="currentIndex">
+   <app-tab-panel title="Tab 1">
+      <!-- khi dung ngtemplate cho nay thi no ko co count tab lan dau duoc, nen minh phai su dung contentChild de truy cap vao ng-template -->
+      <ng-template tabContent>
+         Content tab 1 
+         <counter></counter> 
+      </ng-template>
+   </app-tab-panel>
+   <app-tab-panel title="Tab 2">
+      <ng-template tabContent>
+         Content tab 2 
+         <counter></counter>
+      </ng-template>
+   </app-tab-panel>
+   <app-tab-panel title="Tab 3">
+      <ng-template tabContent>
+         Content tab 3 
+         <counter></counter>
+      </ng-template>
+   </app-tab-panel>
+   <app-tab-panel title="Tab 4" *ngIf="showTab4">
+      <ng-template tabContent>
+         Content tab 4
+         <counter></counter>
+      </ng-template>
+   </app-tab-panel>
+</tab-bs-group>
+
