@@ -14,7 +14,9 @@ import { TabPanelComponent } from './tab-panel/tab-panel.component';
 import { TabBsGroupComponent } from './tab-group/tab-bs-group.component';
 import { CounterComponent } from './counter/counter.component';
 import { TabContentDirective } from './tab-panel/tab-content.directive';
-
+import { Day018PipesComponent } from './day018-pipes/day018-pipes.component';
+import { FormatAddressPipe } from './day018-pipes/format-address.pipe';
+import { AdultPipe } from './day018-pipes/adult.pipe';
 @NgModule({
   declarations: [
     AppComponent,
@@ -27,7 +29,11 @@ import { TabContentDirective } from './tab-panel/tab-content.directive';
     TabPanelComponent,
     TabBsGroupComponent,
     CounterComponent,
-    TabContentDirective
+    TabContentDirective,
+    Day018PipesComponent,
+    FormatAddressPipe,
+    AdultPipe
+
   ],
   imports: [
     BrowserModule,

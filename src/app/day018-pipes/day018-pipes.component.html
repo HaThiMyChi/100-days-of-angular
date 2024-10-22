@@ -1,0 +1,21 @@
+<p>{{currentDate | date: 'fullDate'}}</p>
+<p>{{currentDate | date: 'yyyy-MM-dd'}}</p>
+<p>{{'Chau Tran' | lowercase}}</p>
+<p>{{'Chau Tran' | uppercase}}</p>
+<p>{{user | json}}</p>
+
+<p>{{addr | formatAddress}}</p>
+
+<div class="row">
+    <div class="col-xs-6">
+      <h4>Full user list</h4>
+      <div *ngFor="let user of users">{{ user.name }} - {{user.age}}</div>
+    </div>
+    <div class="col-xs-6">
+      <div class="ml-4">
+        <h4>Adult user list</h4>
+        <div *ngFor="let user of users | adult">{{ user.name }} - {{user.age}}</div>
+      </div>
+    </div>
+    <button (click)="AddUser()">Add user</button>
+</div>
