@@ -17,6 +17,7 @@ import { TabContentDirective } from './tab-panel/tab-content.directive';
 import { Day018PipesComponent } from './day018-pipes/day018-pipes.component';
 import { FormatAddressPipe } from './day018-pipes/format-address.pipe';
 import { AdultPipe } from './day018-pipes/adult.pipe';
+import { TransformationOperationsRxjsComponent } from './transformation-operations-rxjs/transformation-operations-rxjs.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -32,7 +33,8 @@ import { AdultPipe } from './day018-pipes/adult.pipe';
     TabContentDirective,
     Day018PipesComponent,
     FormatAddressPipe,
-    AdultPipe
+    AdultPipe,
+    TransformationOperationsRxjsComponent
 
   ],
   imports: [
