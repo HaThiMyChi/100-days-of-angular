@@ -18,6 +18,7 @@ import { Day018PipesComponent } from './day018-pipes/day018-pipes.component';
 import { FormatAddressPipe } from './day018-pipes/format-address.pipe';
 import { AdultPipe } from './day018-pipes/adult.pipe';
 import { TransformationOperationsRxjsComponent } from './transformation-operations-rxjs/transformation-operations-rxjs.component';
+import { FilteringOperationsRxjsComponent } from './filtering-operations-rxjs/filtering-operations-rxjs.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -34,7 +35,8 @@ import { TransformationOperationsRxjsComponent } from './transformation-operatio
     Day018PipesComponent,
     FormatAddressPipe,
     AdultPipe,
-    TransformationOperationsRxjsComponent
+    TransformationOperationsRxjsComponent,
+    FilteringOperationsRxjsComponent
 
   ],
   imports: [
