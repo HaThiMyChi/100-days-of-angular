@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {from, of, interval, timer, observable, Observable, forkJoin, combineLatest, zip, concat, merge, race} from 'rxjs'
-import { filter, find, first, last, single, take, takeUntil, skip, distinct, distinctUntilChanged, delay, map, mapTo} from 'rxjs/operators';
+import {from, of, interval, timer, observable, forkJoin, combineLatest, zip, concat, merge, race, } from 'rxjs'
+import { filter, find, first, last, single, take, takeUntil, skip, distinct, distinctUntilChanged, delay, map, mapTo, startWith, endWith, pairwise} from 'rxjs/operators';
 
 @Component({
   selector: 'app-filtering-operations-rxjs',
@@ -152,22 +152,46 @@ export class FilteringOperationsRxjsComponent implements OnInit {
     concat(
       interval(1000).pipe(take(3)),
       interval(500).pipe(take(5))
-    ).subscribe(observer)
+    )
+    // .subscribe(observer)
 
     // merge
     merge(
       interval(1000).pipe(take(3), map(x => `first ${x}`)),
       interval(500).pipe(take(5), map(x => `second ${x}`))
-    ).subscribe(observer)
+    )
+    // .subscribe(observer)
 
     // race() chạy đua, thằng nào emit trước thì nó lấy trước thôi
     race(
       interval(1000).pipe(mapTo('fast')),
       interval(2000).pipe(mapTo('medium')),
       interval(3000).pipe(mapTo('slow'))
-    ).subscribe(observer);
+    )
+    // .subscribe(observer);
     // output: fast - 1s -> fast - 1s -> fast - 1s -> fast...
 
+    // startWith() là 1 operator rất dễ hiểu. startWith() nhận vào 1 list các tham số. startWith() sẽ làm cho cả Observable emit giá trị của startWith() trước rồi mới emit đến giá trị của Outer Observable. startWith() sẽ emit giá trị ngay lặp tức mà không phụ thuộc vào việc Outer Observable có emit hay là chưa.
+    of('world').pipe(startWith('Hello12')).subscribe(observer);
+
+    // endWith() cung nhan vao 1 list cac tham so nhu startWith() nhung cach hoat dong thi nguoc lai voi startWith().
+    // mot so khac biet lon la endwith() chi emit gia tri cua endWith() khi Outer Observable complete ma thoi
+    of('hi', 'how are you?', 'sorry, I have go to now')
+      .pipe(endWith('goodbye'))
+      .subscribe(observer)
+
+    // pairwise() là 1 operator rất thú vị và rất kén nghiệp vụ. pairwise() sẽ gộp giá trị emit gần nhất và giá trị đang được emit của Outer Observable thành 1 Array (1 cặp giá trị) và emit Array này.
+    from([1, 2, 3, 4, 5])
+      .pipe(
+        pairwise(),
+        map(([prev, cur]) => prev + cur)
+      )
+      .subscribe(observer);
+      // output:
+      // 3 (1 + 2)
+      // 5 (2 + 3)
+      // 7 (3 + 4)
+      // 9 (4 + 5)
   }
  
   
