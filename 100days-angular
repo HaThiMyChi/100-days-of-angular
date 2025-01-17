@@ -48,5 +48,62 @@ Trong thực tế two-way binding chính là kết hợp của binding dữ li�
 
 <input type="text" [ngModel]="user.name" (ngModelChange)="user.name = $event" />
 
+===== Structure Directive-If-ELse=======
+<div *ngIf="user.age >= 13; else noPG13">Bạn có thể xem nội dung PG-13</div>
+<ng-template #noPG13>
+  <div>Bạn không thể xem nội dung PG-13</div>
+</ng-template>
+
+MỘT SỐ LOCAL VARIABLE TRONG MỘT NGFOROF TEMPLATE
+Khi sử dụng NgForOf, ở mỗi vòng lặp chúng ta sẽ có thể truy xuất đến một số local variable như:
+
+Term	Description
+$implicit: T	Giá trị của phần tử trong danh sách ở lần lặp hiện tại
+index: number	index của lần lặp hiện tại
+count: number	số lượng phần tử trong danh sách
+first: boolean	True nếu đây là phần tử đầu tiên trong danh sách
+last: boolean	True nếu đây là phần tử cuối cùng trong danh sách
+even: boolean	True nếu đây là phần tử ở index chẵn
+odd: boolean	True nếu đây là phần tử ở index lẻ
+Để truy xuất được những biến trên chúng ta chỉ cần gọi chúng như sau: Đối với $implicit nó sẽ được gắn cho biến mà chính chúng ta khi khai báo let something of xxx, lúc này something = \$implicit. Đối với các biến khác, chúng ta chỉ cần dùng cú pháp sau:
+
+<div *ngFor="let author of authors; index as idx; count as total">
+  ({{idx}})/({{total}}): {{author.id}} - {{author.firstName}}
+  {{author.lastName}}
+</div>
+Lúc này biến idx = index, và total = count. Tương tự đối với các biến còn lại.
 
 
+======Day 6: ATTRIBUTE DIRECTIVE==========
+Attribute directive là gì, nó có khác gì Structure directive mà chúng ta đã gặp qua như NgIf, NgForOf không? Đối với Structure directive, nó có thể thêm, xóa, thay đổi cấu trúc cây DOM. Còn một Attribute directive sẽ có thể thay đổi cách hiển thị (style) hoặc hành vi của một DOM element/Component/Directive khác. Đấy chính là sự khác biệt giữa chúng.
+
+CLASS BINDING ví dụ  <div [class.tab-active]="isTabActive">some content</div>
+STYLE BINDING ví dụ <div [style.width]="”someValue”"></div>
+
+==== Day 7: COMPONENT INTERACTION - PASS DATA FROM PARENT TO CHILD WITH INPUT BINDING =========
+thì sử dụng @INPUT DECORATOR ví dụ như này
+export class ProgressBarComponent implements OnInit {
+  @Input() backgroundColor: string;
+  @Input() progressColor: string;
+  @Input() progress = 0;
+  constructor() {}
+  ngOnInit() {}
+}
+
+Constructor là hàm tạo của một class, nó là một function đặc biệt mà khi bạn khởi tạo một instance của class thì nó sẽ được tự động chạy, và chỉ chạy duy nhất một lần. ngOninit là một life-cycle method, nó sẽ được Angular tự động gọi khi component được khởi tạo, sau khi constructor chạy và sau khi các input đã được binding. Do đó nếu bạn binding cho một property ở template của component cha, thì ở constructor của component con bạn sẽ chưa nhận được giá trị mà bạn đã binding, nhưng ở ngOnInit thì bạn sẽ có thể nhận được.
+
+ngOnChanges sẽ chạy lại mỗi khi có một input nào bị thay đổi, nó sẽ được tự động gọi bởi Angular, do đó chúng ta có thể validate property progress như sau:
+
+ngOnDestroy() rất hữu ích để dọn dẹp và giải phóng tài nguyên khi component hoặc directive không còn cần thiết nữa, giúp tránh rò rỉ bộ nhớ và đảm bảo hiệu suất của ứng dụng.
+
+async và await là các từ khóa trong JavaScript/TypeScript được sử dụng để làm việc với các Promise một cách dễ dàng và rõ ràng hơn. Trong Angular, chúng thường được sử dụng để xử lý các tác vụ bất đồng bộ như gọi API, đọc/ghi dữ liệu, hoặc thực hiện các thao tác không đồng bộ khác.
+
+Khai báo hàm bất đồng bộ với async:
+
+Khi bạn khai báo một hàm với từ khóa async, hàm đó sẽ luôn trả về một Promise. Bên trong hàm async, bạn có thể sử dụng từ khóa await để đợi kết quả của một Promise khác.
+Sử dụng await để đợi kết quả của Promise:
+
+Từ khóa await chỉ có thể được sử dụng bên trong một hàm async. Nó sẽ tạm dừng việc thực thi của hàm cho đến khi Promise được giải quyết (resolve) hoặc bị từ chối (reject).
+
+map: Biến đổi từng phần tử của mảng và trả về một mảng mới với cùng số lượng phần tử.
+filter: Lọc các phần tử của mảng dựa trên điều kiện và trả về một mảng mới chỉ chứa các phần tử thỏa mãn điều kiện đó.
