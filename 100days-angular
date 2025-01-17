@@ -1,0 +1,52 @@
+npm install -g @angular/cli@latest
+
+check version angular -> ng version
+
+Nếu các bạn không thể chạy ng version vì nó báo 'ng' is not recognized as an internal or external command. thì các bạn cần phải thêm npm global vào PATH.
+
+Thì các bạn cần phải enable policy để chạy được command. Để enable các bạn mở Powershell as Administrator và chạy lệnh này Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope LocalMachine hoặc mở link ở thông báo lỗi để tìm hiểu thêm.
+
+khởi tạo dự án -> ng new <tên-project>
+
+ng serve Mặc định dự án sẽ chạy ở port 4200, nếu bạn muốn đổi port thì chỉ cần thêm tham số
+
+ng serve --port=other-port Ví dụ: ng serve --port=9000
+
+Đối với AppComponent, đây là root component của ứng dụng, bạn có thể lại thấy một TS decorator khác nữa tên là Component, và bên dưới là một TS class thông thường. Ở trong ứng dụng Angular, TS decorator mà Angular cung cấp thông thường sẽ để gắn thêm meta-data cho class/property/method, đối với class AppComponent, decorator Component sẽ gắn thêm một số meta-data như selector, template (view của component, chính là chúng ta sẽ định nghĩa component sẽ hiển thị những gì), etc View của một component có thể coi là phần HTML mở rộng, nó có nhiều tính năng hơn HTML thông thường. Ở trong view chúng ta có thể sẽ nhúng các component/directive khác. Vậy là đã rõ, tag app-root mà chúng ta nhìn thấy từ index.html sau một vòng tìm hiểu chúng ta sẽ tìm ra nó thuộc về AppComponent.
+
+=== Data binding======
+DOM là gì? Khi browser load trang web của bạn, nó sẽ parse phần HTML và xây dựng nên một cây Document Object Model (DOM) từ đó để biểu diễn tương ứng những gì HTML đang được dựng, cho phép chúng ta có thể tương tác với phần HTML như đọc, sửa HTML bằng JavaScript. Giả sử khi bạn có phần HTML: Sau khi parse xong sẽ có một object (node) thuộc type HTMLInputElement được tạo ra. Ở đây type=”text” hay value=”something” là các HTML attribute. Mỗi tag HTML có thể có nhiều attribute khác nữa (xin mời bạn Search Google). Object được tạo tương ứng sẽ có dạng
+
+obj = {
+  type: 'text',
+  value: 'something',
+  attributes: [], // thuộc type NamedNodeMap, dạng như một array
+  // … các thuộc tính, method khác
+};
+
+EVENT BINDING
+Ví dụ, khi người dùng click vào button, tôi muốn hiển thị alert cho người dùng nhìn thấy -> sử dụng event binding
+Để gắn event listener vào một phần tử nào đó ở trên template.
+@Component({
+  selector: 'app-hello',
+  template: `
+    <h2>Hello there!</h2>
+    <button (click)="showInfo()">Click me!</button>
+  `,
+})
+export class HelloComponent {
+  showInfo() {
+    alert('Inside Angular Component method');
+  }
+}
+
+====== TWO-WAY BINDING =======
+Trong thực tế two-way binding chính là kết hợp của binding dữ liệu từ class ra template thông qua property binding, và từ template vào class thông qua event binding. Nó chứa cú pháp ngắn gọn dạng vuông vuông tròn tròn như sau:
+
+<input type="text" [(ngModel)]="user.name" />
+Để sử dụng ngModel bạn cần imports FormsModule, nhưng trong bài này chúng ta chỉ cần hiểu, nó là cách viết tắt của dạng tương ứng là:
+
+<input type="text" [ngModel]="user.name" (ngModelChange)="user.name = $event" />
+
+
+
