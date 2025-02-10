@@ -19,6 +19,10 @@ import { FormatAddressPipe } from './day018-pipes/format-address.pipe';
 import { AdultPipe } from './day018-pipes/adult.pipe';
 import { TransformationOperationsRxjsComponent } from './transformation-operations-rxjs/transformation-operations-rxjs.component';
 import { FilteringOperationsRxjsComponent } from './filtering-operations-rxjs/filtering-operations-rxjs.component';
+import { HigherOrderObservablesComponent } from './higher-order-observables/higher-order-observables.component';
+import { ExampleHigherOrderObservablesComponent } from './example-higher-order-observables/example-higher-order-observables.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { HelloObservablesComponent } from './hello-observables/hello-observables.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -36,13 +40,17 @@ import { FilteringOperationsRxjsComponent } from './filtering-operations-rxjs/fi
     FormatAddressPipe,
     AdultPipe,
     TransformationOperationsRxjsComponent,
-    FilteringOperationsRxjsComponent
+    FilteringOperationsRxjsComponent,
+    HigherOrderObservablesComponent,
+    ExampleHigherOrderObservablesComponent,
+    HelloObservablesComponent
 
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule 
   ],
   providers: [],
   bootstrap: [AppComponent]

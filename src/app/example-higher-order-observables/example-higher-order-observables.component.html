@@ -1,0 +1,13 @@
+<app-hello-observables name="{{name}}"></app-hello-observables>
+<p>Start editing to see some magic happen :)</p>
+
+<input type="text" [formControl]="queryControl" placeholder="Search...">
+<br>
+<p *ngIf="loading">
+    Loading {{queryControl.value ? 'with query: "' + queryControl.value + '"...' : '...'}}
+</p>
+<ul *ngIf="!loading">
+    <li *ngFor="let user  of users">
+        <pre>{{user | json}}</pre>
+    </li>
+</ul>

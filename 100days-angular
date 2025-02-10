@@ -107,3 +107,281 @@ Từ khóa await chỉ có thể được sử dụng bên trong một hàm asyn
 
 map: Biến đổi từng phần tử của mảng và trả về một mảng mới với cùng số lượng phần tử.
 filter: Lọc các phần tử của mảng dựa trên điều kiện và trả về một mảng mới chỉ chứa các phần tử thỏa mãn điều kiện đó.
+
+
+
+=====================
+Trong Angular, có nhiều loại data binding khác nhau, bao gồm:
+
+Interpolation (Nội suy): Sử dụng dấu ngoặc nhọn đôi {{ }} để liên kết dữ liệu từ component đến template. Ví dụ: {{ currentCustomer }}.
+
+Property Binding (Liên kết thuộc tính): Cho phép thiết lập giá trị cho thuộc tính của các phần tử HTML. Cú pháp: [property]="value". Ví dụ: <img [src]="itemImageUrl">.
+
+Event Binding (Liên kết sự kiện): Liên kết các sự kiện với các phương thức trong component. Cú pháp: (event)="method()". Ví dụ: <button (click)="onSave()">Save</button>.
+
+Attribute Binding (Liên kết thuộc tính): Cho phép thiết lập giá trị cho các thuộc tính HTML. Cú pháp: [attr.attribute-you-are-targeting]="expression". Ví dụ: <button [attr.aria-label]="actionName">.
+
+Class and Style Binding (Liên kết lớp và kiểu):
+
+Class Binding: Thêm hoặc xóa lớp dựa trên biểu thức boolean. Cú pháp: [class.class-name]="condition".
+Style Binding: Thiết lập kiểu động. Cú pháp: [style.property]="value".
+Two-way Binding (Liên kết hai chiều): Kết hợp giữa Property Binding và Event Binding, cho phép chia sẻ dữ liệu giữa component và view. Cú pháp: [(property)]. Ví dụ: <input [(ngModel)]="name">.
+
+One-Way Data Binding (Liên kết dữ liệu một chiều): Dữ liệu chỉ chảy theo một hướng, từ component đến view hoặc ngược lại. Sử dụng Interpolation và Property Binding để hiển thị dữ liệu từ component ra view.
+
+ví dụ :
+1. TWO-WAY BINDING
+Trong thực tế two-way binding chính là kết hợp của binding dữ liệu từ class ra template thông qua property binding, và từ template vào class thông qua event binding. Nó chứa cú pháp ngắn gọn dạng vuông vuông tròn tròn như sau:
+
+<input type="text" [(ngModel)]="user.name" />
+Để sử dụng ngModel bạn cần imports FormsModule, nhưng trong bài này chúng ta chỉ cần hiểu, nó là cách viết tắt của dạng tương ứng là:
+
+<input type="text" [ngModel]="user.name" (ngModelChange)="user.name = $event" />
+
+2. EVENT BINDING
+Ví dụ, khi người dùng click vào button, tôi muốn hiển thị alert cho người dùng nhìn thấy.
+@Component({
+  selector: 'app-hello',
+  template: `
+    <h2>Hello there!</h2>
+    <button (click)="showInfo()">Click me!</button>
+  `,
+})
+export class HelloComponent {
+  showInfo() {
+    alert('Inside Angular Component method');
+  }
+}
+<button onclick="showInfo()">Click me!</button>
+
+=========
+Tổng quát life cycle của một component
+1. Constructor
+Là phương thức mặc định của class được thực khi class đó được khởi tạo. Nó nên được dùng để khai báo Dependency Injection, không nên xử lí logic ở trong phương thức này
+2.ngOnChanges
+Hook này sẽ được gọi mỗi khi có sự thay đổi giá trị của các Input của component.
+( Được gọi trước ngOnInit() và bất cứ khi nào một hoặc nhiều thuộc tính đầu vào ràng buộc dữ liệu thay đổi.)
+3.ngOninit
+Phương thức này sẽ được gọi duy nhất một lần khi khởi tạo xong Component. Ở đây được sử dụng để khởi tạo bổ sung thêm cho component như là khởi tạo giá trị cho biến, gọi api, khởi tạo form, ...
+
+- Thứ tự thực thi với case Parent/Child Component:
+Khi khởi tạo thì component cha phải được khởi tạo trước, sau đó mới đến component con vậy nên ngOninit của component cha sẽ chạy trước component con nhé các fen
+4. ngDoCheck
+Phương thức này sẽ được gọi sau ngOninit và mỗi khi change detection chạy. Phương thức này dùng để custom Angular có cơ chế change detection, nó sẽ phát hiện các sự kiện như DOM Event(click, hover), setTimeout, SetInterval, XHR Request. Khi bắt được những sự kiện này, Angular sẽ thực hiện detect Change toàn bộ cây component của ứng dụng để kiểm tra sự thay đổi và re-render UI. Lúc này change detector ở mỗi component sẽ làm việc và ngDoCheck cũng được gọi. Ở đây mình có một component
+5. ngAfterContentInit
+Phương thức được gọi một lần duy nhất sau ngDoCheck lần đầu tiên. Nó thực thi sau khi Angular chiếu content lên component view với thẻ ng-content nên phương thức này giúp bạn có thể truy xuất content được truyền vào với ContentChild decorator ví dụ như lấy giá trị 1 public property từ component content chẳng hạn
+6. ngAfterContentChecked
+Được gọi sau khi Angular đã kiểm tra content được truyền vào component Phương thức này được gọi lần đầu sau ngAfterContentInit thực thi và sau đó được gọi sau mỗi lần ngDoCheck (từ lần thứ 2 trở đi) tức mỗi lần change detection được thực thi. Với mình thì thường sử dụng thằng này để thực thi đoạn logic mình mong muốn mỗi khi change detection để đảm bảo đoạn logic mình chạy lấy được dữ liệu mới nhất của content truyền vào.
+7.ngAfterViewInit
+Được gọi sau khi Angular đã hoàn thành khởi tạo view component và view con. Và nó chỉ chạy duy nhất một lần Mục đích sử dụng thông thường là thực thi view query với tham chiếu bằng ViewChild hoặc ViewChilden
+8. ngAfterViewChecked
+Được gọi sau khi Angular kiểm tra component view và view những thằng con hoặc view chứa directive. Phương thức được gọi sau ngAfterViewInit lần đầu tiên, và sau mỗi ngAfterContentChecked
+9. ngDestroy
+Được gọi 1 lần duy nhất khi Angular hủy component Thường dùng để handle các event, ubsubscribe obseverble khi hủy component
+
+
+==========
+1. @Input()
+Mục đích: Cho phép component cha truyền dữ liệu vào component con.
+Cách sử dụng:
+Trong component con, bạn định nghĩa thuộc tính với decorator @Input()
+import { Component, Input } from '@angular/core';
+
+export class ItemDetailComponent {
+    @Input() item = ''; // Thuộc tính được trang trí bằng @Input()
+}
+Trong template của component cha, bạn sử dụng cú pháp sau để truyền dữ liệu
+<app-item-detail [item]="currentItem"></app-item-detail>
+Component con có thể hiển thị giá trị đã nhận
+<p>Today's item: {{item}}</p>
+
+2. @Output()
+Mục đích: Cho phép component con gửi dữ liệu trở lại component cha thông qua sự kiện.
+Cách sử dụng:
+Trong component con, bạn định nghĩa một EventEmitter với decorator @Output()
+import { Output, EventEmitter } from '@angular/core';
+
+export class ItemOutputComponent {
+    @Output() newItemEvent = new EventEmitter<string>();
+    
+    addNewItem(value: string) {
+        this.newItemEvent.emit(value); // Gửi dữ liệu trở lại component cha
+    }
+}
+Trong template của component cha, bạn lắng nghe sự kiện
+<app-item-output (newItemEvent)="addItem($event)"></app-item-output>
+
+3 Component Directive Service Module
++ Component: Phần tử giao diện người dùng với logic và template.
+Định nghĩa: Component là một phần tử cơ bản trong Angular, đại diện cho một phần của giao diện người dùng. Mỗi component có thể có template (HTML), logic (TypeScript), và styles (CSS).
++ Directive: Thêm hành vi cho các phần tử DOM.
+Định nghĩa: Directive là một lớp được chú thích bằng decorator @Directive, cho phép bạn thêm hành vi cho các phần tử DOM. Có ba loại directive chính:
+Component Directive: Là một component, có template riêng.
+Structural Directives: Thay đổi cấu trúc DOM (ví dụ: *ngIf, *ngFor).
+Attribute Directives: Thay đổi kiểu dáng hoặc hành vi của một phần tử (ví dụ: [ngClass], [ngStyle]).
+
++ Service: Chia sẻ dữ liệu và logic giữa các component.
+Định nghĩa: Service là một lớp có thể tái sử dụng, thường được sử dụng để chia sẻ dữ liệu và logic giữa các component. Services thường được định nghĩa với decorator @Injectable.
+Cách sử dụng: Bạn có thể tạo một service để quản lý dữ liệu
+import { Injectable } from '@angular/core';
+
+@Injectable({
+  providedIn: 'root'
+})
+export class ProductService {
+  getProducts() {
+    // Logic để lấy sản phẩm
+  }
+}
+Dependency Injection: Services được tiêm vào các component thông qua constructor
+
++ Module: Tổ chức và cấu trúc ứng dụng
+Định nghĩa: Module là một container dùng để tổ chức và cấu trúc ứng dụng Angular. Mỗi ứng dụng Angular có ít nhất một module, thường là AppModule.
+Cấu trúc của Module:
+declarations: Khai báo các component, directive, và pipe.
+providers: Khai báo các service có sẵn cho các module con.
+imports: Danh sách các module cần thiết cho ứng dụng.
+bootstrap: Định nghĩa component gốc của module.
+
+---- Tóm lại là 
+Component: Phần tử giao diện người dùng với logic và template.
+Directive: Thêm hành vi cho các phần tử DOM.
+Service: Chia sẻ dữ liệu và logic giữa các component.
+Module: Tổ chức và cấu trúc ứng dụng.
+
+Bộ câu hỏi:
+1. Đã từng làm socket chưa => trả lời là có
+2. Làm thế nào để kết nối WebSocket trong Angular?
+Câu hỏi: Làm thế nào để kết nối WebSocket trong Angular?
+Trả lời:
++ Cài đặt Angular và tạo dự án:
+npm install -g @angular/cli
++ Tạo dự án mới:
+ng new real-time-app
+cd real-time-app
++ Tạo WebSocket Service:
+ng generate service websocket
+Viết mã cho WebSocket Service:
+
+Trong websocket.service.ts
+import { Injectable } from '@angular/core';
+import { Observable, Subject } from 'rxjs';
+
+@Injectable({ providedIn: 'root' })
+export class WebsocketService {
+  private websocket: WebSocket;
+  private messages: Subject<any> = new Subject();
+
+  constructor() {
+    this.connect();
+  }
+
+  private connect() {
+    this.websocket = new WebSocket('ws://localhost:8080');
+    this.websocket.onmessage = (event) => {
+      this.messages.next(JSON.parse(event.data));
+    };
+    this.websocket.onerror = (error) => {
+      console.error("WebSocket error:", error);
+    };
+    this.websocket.onclose = () => {
+      console.log("WebSocket connection closed");
+    };
+  }
+
+  sendMessage(message: any) {
+    if (this.websocket.readyState === WebSocket.OPEN) {
+      this.websocket.send(JSON.stringify(message));
+    }
+  }
+
+  getMessages(): Observable<any> {
+    return this.messages.asObservable();
+  }
+}
++ Sử dụng Service trong Component:
+ng generate component real-time
+import { Component, OnInit } from '@angular/core';
+import { WebsocketService } from '../websocket.service';
+
+@Component({
+  selector: 'app-real-time',
+  templateUrl: './real-time.component.html',
+  styleUrls: ['./real-time.component.css']
+})
+export class RealTimeComponent implements OnInit {
+  messages: any[] = [];
+  newMessage: string = '';
+
+  constructor(private websocketService: WebsocketService) {}
+
+  ngOnInit() {
+    this.websocketService.getMessages().subscribe((message) => {
+      this.messages.push(message);
+    });
+  }
+
+  sendMessage() {
+    if (this.newMessage.trim()) {
+      this.websocketService.sendMessage({ text: this.newMessage });
+      this.newMessage = '';
+    }
+  }
+}
++ Template HTML:
+<div>
+  <h2>Real-Time Messages</h2>
+  <div *ngFor="let message of messages">
+    {{ message.text }}
+  </div>
+  <input [(ngModel)]="newMessage" placeholder="Type a message" />
+  <button (click)="sendMessage()">Send</button>
+</div>
++ Chạy ứng dụng:
+ng serve
+
+câu 3: Làm thế nào để xử lý lỗi websocket trong angular
+Xử lý lỗi: Sử dụng onerror và onclose để bắt lỗi và thực hiện hành động khi kết nối bị đóng.
+Tự động kết nối lại: Sử dụng setTimeout để tự động kết nối lại sau một khoảng thời gian nhất định.
+Hiển thị thông báo lỗi: Bạn có thể thêm logic trong component để hiển thị thông báo lỗi cho người dùng nếu cần.
+
+câu 4: Làm thế nào để tự động kết nối lại khi websocket bị mất trong angular
+Xử lý sự kiện onerror và onclose: Khi kết nối gặp lỗi hoặc bị đóng, gọi phương thức reconnect để thử kết nối lại sau một khoảng thời gian nhất định.
+Phương thức reconnect: Sử dụng setTimeout để đợi một khoảng thời gian trước khi gọi lại phương thức connect.
+Hiển thị thông báo lỗi: Bạn có thể thêm logic trong component để hiển thị thông báo lỗi cho người dùng nếu cần.
+
+câu 5: Làm thế nào để bảo mật websocket trong angular
+1. Sử dụng WSS (WebSocket Secure)
+Sử dụng giao thức wss:// thay vì ws:// để mã hóa dữ liệu truyền tải giữa client và server.
+Đảm bảo rằng server của bạn hỗ trợ SSL/TLS và có chứng chỉ SSL hợp lệ.
+2. Xác thực và Ủy quyền
+Thực hiện xác thực người dùng trước khi thiết lập kết nối WebSocket.
+Sử dụng token (ví dụ: JWT - JSON Web Token) để xác thực người dùng khi kết nối WebSocket.
+3. Kiểm tra nguồn gốc (Origin)
+Kiểm tra header Origin của yêu cầu WebSocket để đảm bảo rằng yêu cầu đến từ nguồn gốc đáng tin cậy.
+4. Giới hạn kết nối
+Giới hạn số lượng kết nối WebSocket từ một địa chỉ IP cụ thể để ngăn chặn tấn công DDoS.
+5. Xử lý lỗi và đóng kết nối không hợp lệ
+Xử lý các lỗi và đóng các kết nối không hợp lệ hoặc không được ủy quyền.
+
+--- tóm lai
+Tóm tắt
+Sử dụng WSS: Sử dụng giao thức wss:// để mã hóa dữ liệu.
+Xác thực và Ủy quyền: Sử dụng token để xác thực người dùng.
+Kiểm tra nguồn gốc: Kiểm tra header Origin để đảm bảo yêu cầu đến từ nguồn gốc đáng tin cậy.
+Giới hạn kết nối: Giới hạn số lượng kết nối từ một địa chỉ IP cụ thể.
+Xử lý lỗi và đóng kết nối không hợp lệ: Đóng các kết nối không hợp lệ hoặc không được ủy quyền.
+
+câu 6:  webSocket là gì
+WebSocket là một giao thức giao tiếp hai chiều (full-duplex) giữa client và server, được thiết kế để truyền dữ liệu thời gian thực với độ trễ thấp. Nó cho phép thiết lập một kết nối liên tục giữa client và server, qua đó cả hai có thể gửi và nhận dữ liệu bất cứ lúc nào mà không cần phải mở lại kết nối mới.
+
+
+ví dụ rest api thì phía client phải call api thì BE mới trả về kết quả
+còn socket thì client luôn lắng nghe
+BE bắn socket về sẽ kèm theo message
+dựa vào message mà mình xử lý theo business mình muốn
+hầu như app chat nào cũng dùng socket để realtime á
+
+Observable: Đại diện cho một luồng dữ liệu có thể được quan sát.
+Operators: Các hàm cho phép biến đổi, lọc và kết hợp các Observable.
+Sử dụng RxJS trong Angular: Xử lý HTTP requests và sự kiện người dùng bằng cách sử dụng HttpClient và fromEvent.
