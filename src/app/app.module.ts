@@ -23,6 +23,7 @@ import { HigherOrderObservablesComponent } from './higher-order-observables/high
 import { ExampleHigherOrderObservablesComponent } from './example-higher-order-observables/example-higher-order-observables.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HelloObservablesComponent } from './hello-observables/hello-observables.component';
+import { Day026RxjsSubjectMulticastComponent } from './day026-rxjs-subject-multicast/day026-rxjs-subject-multicast.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -43,7 +44,8 @@ import { HelloObservablesComponent } from './hello-observables/hello-observables
     FilteringOperationsRxjsComponent,
     HigherOrderObservablesComponent,
     ExampleHigherOrderObservablesComponent,
-    HelloObservablesComponent
+    HelloObservablesComponent,
+    Day026RxjsSubjectMulticastComponent
 
   ],
   imports: [

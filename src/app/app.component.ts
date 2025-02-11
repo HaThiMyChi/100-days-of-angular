@@ -37,13 +37,13 @@ export class AppComponent {
       this.nameInput.nativeElement.focus()
     }, 3000)
    
-    console.log('onInit', this.toggleComp, this.toggleBtn);
+    // console.log('onInit', this.toggleComp, this.toggleBtn);
    
   }
 
 
   ngAfterViewInit() {
-    console.log(this.toggleComp);
+    // console.log(this.toggleComp);
     this.toggleComps.changes.subscribe(console.log);
   }
 }
