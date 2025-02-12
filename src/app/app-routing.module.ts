@@ -1,7 +1,25 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { ArticleDetailComponent } from './article-detail/article-detail.component';
+import { ArticleListComponent } from './article-list/article-list.component';
 
-const routes: Routes = [];
+// RouterModule mặc định sẽ provide hai method là forRoot và forChild. Hai method này đều dùng để config routes, tuy nhiên.
+
+// forRoot, dc gọi một lần duy nhất khi bạn config route trong AppRoutingModule. forRoot cũng dùng để configures/initializes router.
+// forChild, dc gọi trong các module khác để config routes.
+
+// Thay vì path: 'detail', giờ mình sửa lại thành path: ':slug'. Dấu hai chấm là cú pháp của router cho phép bạn định nghĩa ra một parameter trên URL. Phần sau dấu hai chấm là tên của parameter mà bạn có thể lấy được từ trong ArticleDetailComponent
+
+const routes: Routes = [
+  {
+    path: ':slug',
+    component: ArticleDetailComponent,
+  },
+  {
+    path:'',
+    component:ArticleListComponent
+  },
+];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

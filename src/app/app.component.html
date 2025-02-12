@@ -122,4 +122,27 @@
 </tab-bs-group> -->
 <!-- <app-transformation-operations-rxjs></app-transformation-operations-rxjs> -->
  <!-- <app-filtering-operations-rxjs></app-filtering-operations-rxjs> -->
- <app-day026-rxjs-subject-multicast></app-day026-rxjs-subject-multicast>
+ <!-- <app-day026-rxjs-subject-multicast></app-day026-rxjs-subject-multicast> -->
+
+ <!-- Day27 Router -->
+ <!-- Dùng routerLink trong thẻ <a> để gán phần URL như đã config và <router-outlet> sẽ là nơi phần component được load tương ứng khi mở URL tương ứng. -->
+
+<div class="container">
+   <h1>Angular 100 Days of Code</h1>
+   <h2 class="mb-4">
+      <a href="https://github.com/angular-vietnam/100-days-of-angular/blob/master/Day027-router.md"
+         target="_blank">Day 27 Angular Router
+      </a>
+   </h2>
+   <ul class="nav nav-pills card-header-pills">
+      <li class="nav-item">
+         <a class="nav-link" routerLink="/">Home</a>
+      </li>
+      <li class="nav-item">
+         <a class="nav-link" routerLink="detail">Detail</a>
+      </li>
+   </ul>
+   <router-outlet></router-outlet>
+</div>
+
+

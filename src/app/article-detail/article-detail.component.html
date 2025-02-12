@@ -1,0 +1,7 @@
+<div *ngIf="article$ | async as article else loadingTmpl ">
+    <h1>{{ article.title }}</h1>
+    <p>{{ article.content }}</p>
+</div>
+<ng-template #loadingTmpl>
+    Loading...
+</ng-template>
