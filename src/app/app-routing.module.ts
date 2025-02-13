@@ -18,6 +18,12 @@ const routes: Routes = [
   //   component:ArticleListComponent
   // },
 
+  // config để load admin module theo cú pháp của lazy loading module khi mở ứng dụng ở path có dạng /admin
+  {
+    path: 'admin',
+    loadChildren: () =>
+      import('./admin/admin.module').then((m) => m.AdminModule), // tức là một function có return lại một dynamic import module.
+  },
   {
     path: '',
     redirectTo: 'article',

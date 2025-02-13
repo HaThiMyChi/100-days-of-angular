@@ -1,0 +1,31 @@
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">Slug</th>
+            <th scope="col">Title</th>
+            <th scope="col">Content</th>
+            <th scope="col">Last Updated</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        <ng-container *ngIf="articles$ |async as articles else loadingTmpl">
+            <tr *ngFor="let article of articles">
+                <th scope="row">{{article.slug}}</th>
+                <td>{{article.title}}</td>
+                <td>{{ article.content }}</td>
+                <td>{{ article.updateAt | date }}</td>
+                <td>
+                    <button type="button"
+                        class="btn btn-primary mr-1">Edit</button>
+                    <button type="button"
+                        class="btn btn-danger">Delete</button>
+                </td>
+            </tr>
+        </ng-container>
+    </tbody>
+</table>
+
+<ng-template #loadingTmpl>
+    Loading...
+</ng-template>

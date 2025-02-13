@@ -27,6 +27,8 @@ import { Day026RxjsSubjectMulticastComponent } from './day026-rxjs-subject-multi
 import { ArticleListComponent } from './article/article-list/article-list.component';
 import { ArticleDetailComponent } from './article/article-detail/article-detail.component';
 import { ArticleModule } from './article/article.module';
+import { AdminArticleListComponent } from './admin/admin-article-list/admin-article-list.component';
+import { AdminComponent } from './admin/admin.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -49,6 +51,8 @@ import { ArticleModule } from './article/article.module';
     ExampleHigherOrderObservablesComponent,
     HelloObservablesComponent,
     Day026RxjsSubjectMulticastComponent,
+    // AdminArticleListComponent,
+    // AdminComponent,
     // ArticleListComponent,
     // ArticleDetailComponent
 
