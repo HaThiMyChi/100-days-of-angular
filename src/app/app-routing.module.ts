@@ -1,7 +1,5 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { ArticleDetailComponent } from './article-detail/article-detail.component';
-import { ArticleListComponent } from './article-list/article-list.component';
 
 // RouterModule mặc định sẽ provide hai method là forRoot và forChild. Hai method này đều dùng để config routes, tuy nhiên.
 
@@ -11,14 +9,20 @@ import { ArticleListComponent } from './article-list/article-list.component';
 // Thay vì path: 'detail', giờ mình sửa lại thành path: ':slug'. Dấu hai chấm là cú pháp của router cho phép bạn định nghĩa ra một parameter trên URL. Phần sau dấu hai chấm là tên của parameter mà bạn có thể lấy được từ trong ArticleDetailComponent
 
 const routes: Routes = [
+  // {
+  //   path: ':slug',
+  //   component: ArticleDetailComponent,
+  // },
+  // {
+  //   path:'',
+  //   component:ArticleListComponent
+  // },
+
   {
-    path: ':slug',
-    component: ArticleDetailComponent,
-  },
-  {
-    path:'',
-    component:ArticleListComponent
-  },
+    path: '',
+    redirectTo: 'article',
+    pathMatch: 'full'
+  }
 ];
 
 @NgModule({
