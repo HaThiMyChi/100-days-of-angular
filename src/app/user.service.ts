@@ -6,6 +6,10 @@ import { users } from "./constants";
 
 @Injectable({providedIn: "root"})
 export class UserService {
+    currentUser = {
+        username: 'TiepPhan'
+    };
+
     getUsers(query?: string): Observable<User[]> {
         return of(users).pipe( // chuyển array này thành 1 observable
             delay(2000), // delay này để nó mô phỏng fetch api
@@ -20,5 +24,8 @@ export class UserService {
                 })
             )
         )
+    }
+    constructor() {
+        
     }
 }

@@ -10,6 +10,7 @@ const Articles: Article[] = [
         title: 'bai viet 1',
         content: ' Day la noi dung bai viet 1',
         updateAt: '2020-07-06T13:26:31.785Z',
+        author: 'TiepPhan',
     },
     {
         id: '2',
@@ -17,6 +18,7 @@ const Articles: Article[] = [
         title: 'Bai viet 2',
         content: 'Day la noi dung bai viet 2 nhe ',
         updateAt: '2020-07-15:00:00.000Z',
+        author: 'ChauTran'
       },
 ];
 @Injectable({

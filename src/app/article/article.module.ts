@@ -3,6 +3,9 @@ import { ArticleListComponent } from "./article-list/article-list.component";
 import { ArticleDetailComponent } from "./article-detail/article-detail.component";
 import { Component, NgModule } from "@angular/core";
 import { CommonModule } from "@angular/common";
+import { ArticleEditComponent } from './article-edit/article-edit.component';
+import { CanEditArticleGuard } from "./can-edit-article.guard";
+import { CanLeaveEditGuard } from "./can-leave-edit-guard";
 
 // const routes: Routes = [
 //     {
@@ -28,6 +31,12 @@ import { CommonModule } from "@angular/common";
                 path: ':slug',
                 component: ArticleDetailComponent,
             },
+            {
+                path: ':slug/edit',
+                component: ArticleEditComponent,
+                canActivate: [CanEditArticleGuard],
+                canDeactivate: [CanLeaveEditGuard]
+            }
            
         ],
         
@@ -56,6 +65,6 @@ import { CommonModule } from "@angular/common";
       CommonModule,
       RouterModule.forChild(routes),
     ],
-    declarations: [ArticleListComponent, ArticleDetailComponent]
+    declarations: [ArticleListComponent, ArticleDetailComponent, ArticleEditComponent]
   })
 export class ArticleModule { }

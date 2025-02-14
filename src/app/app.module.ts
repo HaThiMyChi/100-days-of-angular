@@ -29,6 +29,7 @@ import { ArticleDetailComponent } from './article/article-detail/article-detail.
 import { ArticleModule } from './article/article.module';
 import { AdminArticleListComponent } from './admin/admin-article-list/admin-article-list.component';
 import { AdminComponent } from './admin/admin.component';
+import { ConfirmDialogComponent } from './confirm-dialog/confirm-dialog.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -51,6 +52,7 @@ import { AdminComponent } from './admin/admin.component';
     ExampleHigherOrderObservablesComponent,
     HelloObservablesComponent,
     Day026RxjsSubjectMulticastComponent,
+    ConfirmDialogComponent,
     // AdminArticleListComponent,
     // AdminComponent,
     // ArticleListComponent,
