@@ -30,6 +30,9 @@ import { ArticleModule } from './article/article.module';
 import { AdminArticleListComponent } from './admin/admin-article-list/admin-article-list.component';
 import { AdminComponent } from './admin/admin.component';
 import { ConfirmDialogComponent } from './confirm-dialog/confirm-dialog.component';
+import { ConfirmDialogModule } from './confirm-dialog/confirm-dialog.module';
+import { MatDialogModule } from '@angular/material/dialog';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 @NgModule({
   declarations: [
     AppComponent,
@@ -52,7 +55,7 @@ import { ConfirmDialogComponent } from './confirm-dialog/confirm-dialog.componen
     ExampleHigherOrderObservablesComponent,
     HelloObservablesComponent,
     Day026RxjsSubjectMulticastComponent,
-    ConfirmDialogComponent,
+    // ConfirmDialogComponent,
     // AdminArticleListComponent,
     // AdminComponent,
     // ArticleListComponent,
@@ -62,9 +65,12 @@ import { ConfirmDialogComponent } from './confirm-dialog/confirm-dialog.componen
   imports: [
     BrowserModule,
     FormsModule,
+    // ConfirmDialogModule,
     ArticleModule,
     AppRoutingModule,
-    ReactiveFormsModule 
+    ReactiveFormsModule ,
+    BrowserAnimationsModule,
+    MatDialogModule
   ],
   providers: [],
   bootstrap: [AppComponent]

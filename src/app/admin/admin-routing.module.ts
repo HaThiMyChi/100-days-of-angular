@@ -9,7 +9,7 @@ const routes: Routes = [
         component: AdminComponent,
         children: [
             {
-                path: 'admin-article',
+                path: '',
                 component: AdminArticleListComponent,
             },
         ],

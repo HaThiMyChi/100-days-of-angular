@@ -2,9 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree } from '@angular/router';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { CheckDeactivate } from '../../check-deactivate';
 import { MatDialog } from '@angular/material/dialog';
-import { CheckDeactivate } from 'src/app/check-deactivate';
-import { ConfirmDialogComponent } from 'src/app/confirm-dialog/confirm-dialog.component';
+import { ConfirmDialogComponent } from '../../confirm-dialog/confirm-dialog.component';
+
+
 
 @Component({
   selector: 'app-article-edit',
@@ -12,15 +14,15 @@ import { ConfirmDialogComponent } from 'src/app/confirm-dialog/confirm-dialog.co
   styleUrls: ['./article-edit.component.scss']
 })
 export class ArticleEditComponent implements OnInit, CheckDeactivate {
-
-  constructor(private activateRoute: ActivatedRoute, private dialog: MatDialog) { }
-  slug$ = this.activateRoute.paramMap.pipe(
+  slug$ = this.activatedRoute.paramMap.pipe(
     map(params => params.get('slug'))
   );
 
   isEditing = false;
+  
+  constructor(private activatedRoute: ActivatedRoute, private dialog: MatDialog) { }
 
-  ngOnInit(): void {
+  ngOnInit() {
   }
 
   openDialog() {
