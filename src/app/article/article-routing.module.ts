@@ -7,6 +7,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { ArticleComponent } from './article.component';
 import { CanEditArticleGuard } from './can-edit-article.guard';
 import { CanLeaveEditGuard } from './can-leave-edit-guard';
+import { ArticleResolver } from '../article-resolver.service';
 
 const routes: Routes = [
   {
@@ -19,7 +20,10 @@ const routes: Routes = [
       },
       {
         path: ':slug',
-        component: ArticleDetailComponent
+        component: ArticleDetailComponent,
+        resolve: {
+          article: ArticleResolver // <== key: value (service or Dependency injection token)
+        }
       },
       {
         path: ':slug/edit',

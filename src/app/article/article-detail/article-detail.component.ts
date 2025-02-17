@@ -25,16 +25,19 @@ export class ArticleDetailComponent implements OnInit {
     // Lúc này snapshot không thay đổi, vì snapshot chỉ tạo một lần duy nhất khi tạo ArticleDetailComponent, còn paramMap Observable sẽ emit một giá trị mới cho slug.
     // cach 2:  sử dụng Observable để observe như sau
 
-    this.article$ = this._route.paramMap.pipe(
-      map(params => params.get('slug')),
-      switchMap(slug => {
-        if (slug) {
-          return this._api.getArticleBySlug(slug);
-        } else {
-          return EMPTY; // Ensure both paths return an observable
-        }
-      })
-    );
+    // this.article$ = this._route.paramMap.pipe(
+    //   map(params => params.get('slug')),
+    //   switchMap(slug => {
+    //     if (slug) {
+    //       return this._api.getArticleBySlug(slug);
+    //     } else {
+    //       return EMPTY; // Ensure both paths return an observable
+    //     }
+    //   })
+    // );
+
+    // cach nay goi data theo cach su dung resolve o routing, data.article la do ten article duoc dinh nghia key o routing cho resolve
+    this.article$ = this._route.data.pipe(map((data) => data.article));
 
     // Ngoài việc cung cấp API cho params, ActivatedRoute Service cũng cho phép bạn lấy/observe query params thông qua queryParamMap.
 
