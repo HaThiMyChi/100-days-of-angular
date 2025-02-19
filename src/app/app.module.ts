@@ -32,7 +32,12 @@ import { AdminComponent } from './admin/admin.component';
 import { ConfirmDialogComponent } from './confirm-dialog/confirm-dialog.component';
 import { ConfirmDialogModule } from './confirm-dialog/confirm-dialog.module';
 import { MatDialogModule } from '@angular/material/dialog';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { SignInComponent } from './sign-in/sign-in.component'
+import { MatButtonModule } from '@angular/material/button';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import {MatCheckboxModule } from '@angular/material/checkbox';
+import { MatInputModule } from '@angular/material/input';
 @NgModule({
   declarations: [
     AppComponent,
@@ -55,6 +60,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
     ExampleHigherOrderObservablesComponent,
     HelloObservablesComponent,
     Day026RxjsSubjectMulticastComponent,
+    SignInComponent,
     // ConfirmDialogComponent,
     // AdminArticleListComponent,
     // AdminComponent,
@@ -70,7 +76,12 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
     AppRoutingModule,
     ReactiveFormsModule ,
     BrowserAnimationsModule,
-    MatDialogModule
+    MatDialogModule,
+    MatButtonModule,
+    MatFormFieldModule,
+    MatCheckboxModule,
+    MatInputModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

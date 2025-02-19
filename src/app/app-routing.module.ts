@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { SignInComponent } from './sign-in/sign-in.component';
 
 // RouterModule mặc định sẽ provide hai method là forRoot và forChild. Hai method này đều dùng để config routes, tuy nhiên.
 
@@ -28,6 +29,10 @@ const routes: Routes = [
     path: '',
     redirectTo: 'article',
     pathMatch: 'full'
+  },
+  {
+    path: 'sign-in',
+    component: SignInComponent
   }
 ];
 
