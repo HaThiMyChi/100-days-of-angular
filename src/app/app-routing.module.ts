@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { SignInComponent } from './sign-in/sign-in.component';
+import { SignInReactiveformComponent } from './sign-in-reactiveform/sign-in-reactiveform.component';
 
 // RouterModule mặc định sẽ provide hai method là forRoot và forChild. Hai method này đều dùng để config routes, tuy nhiên.
 
@@ -33,6 +34,10 @@ const routes: Routes = [
   {
     path: 'sign-in',
     component: SignInComponent
+  },
+  {
+    path: 'sign-in-rf',
+    component: SignInReactiveformComponent
   }
 ];
 

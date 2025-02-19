@@ -38,6 +38,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import {MatCheckboxModule } from '@angular/material/checkbox';
 import { MatInputModule } from '@angular/material/input';
+import { SignInReactiveformComponent } from './sign-in-reactiveform/sign-in-reactiveform.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -61,6 +62,7 @@ import { MatInputModule } from '@angular/material/input';
     HelloObservablesComponent,
     Day026RxjsSubjectMulticastComponent,
     SignInComponent,
+    SignInReactiveformComponent,
     // ConfirmDialogComponent,
     // AdminArticleListComponent,
     // AdminComponent,
@@ -81,7 +83,7 @@ import { MatInputModule } from '@angular/material/input';
     MatFormFieldModule,
     MatCheckboxModule,
     MatInputModule,
-    FormsModule
+    FormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
