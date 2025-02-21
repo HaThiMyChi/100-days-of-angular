@@ -1,0 +1,6 @@
+<button class="btn btn-primary" (click)="adDynamicCompOne()">Add Dynamic Component 1</button>
+<button class="btn btn-primary" (click)="addDynamicCompTwo()">Add Dynamic Component 2</button>
+<button class="btn btn-danger" (click)="clearDynamicComp()">Clear</button>
+
+<!-- Tạo 1 ViewChild trong template. Ở đây là thẻ div #dynamicComponent. Đây sẽ là nơi chúng ta load những components vào ở runtime. -->
+<div #dynamicComponent></div>

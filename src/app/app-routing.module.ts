@@ -2,6 +2,8 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { SignInComponent } from './sign-in/sign-in.component';
 import { SignInReactiveformComponent } from './sign-in-reactiveform/sign-in-reactiveform.component';
+import { RegisterFormComponent } from './register-form/register-form.component';
+import { ExampleContainerComponent } from './example-container/example-container.component';
 
 // RouterModule mặc định sẽ provide hai method là forRoot và forChild. Hai method này đều dùng để config routes, tuy nhiên.
 
@@ -38,6 +40,14 @@ const routes: Routes = [
   {
     path: 'sign-in-rf',
     component: SignInReactiveformComponent
+  },
+  {
+    path: 'registerFrom',
+    component: RegisterFormComponent
+  },
+  {
+    path: 'dynamic-component',
+    component: ExampleContainerComponent
   }
 ];
 

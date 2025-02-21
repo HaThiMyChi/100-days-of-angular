@@ -39,6 +39,10 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import {MatCheckboxModule } from '@angular/material/checkbox';
 import { MatInputModule } from '@angular/material/input';
 import { SignInReactiveformComponent } from './sign-in-reactiveform/sign-in-reactiveform.component';
+import { RegisterFormComponent } from './register-form/register-form.component';
+import { ExampleContainerComponent } from './example-container/example-container.component';
+// import { DynamicContentOneComponent } from './dynamic-content-one/dynamic-content-one.component';
+// import { DynamicContentTwoComponent } from './dynamic-content-two/dynamic-content-two.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -63,6 +67,10 @@ import { SignInReactiveformComponent } from './sign-in-reactiveform/sign-in-reac
     Day026RxjsSubjectMulticastComponent,
     SignInComponent,
     SignInReactiveformComponent,
+    RegisterFormComponent,
+    ExampleContainerComponent,
+    // DynamicContentOneComponent,
+    // DynamicContentTwoComponent,
     // ConfirmDialogComponent,
     // AdminArticleListComponent,
     // AdminComponent,
@@ -86,6 +94,7 @@ import { SignInReactiveformComponent } from './sign-in-reactiveform/sign-in-reac
     FormsModule,
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  // entryComponents: [DynamicContentOneComponent, DynamicContentTwoComponent]
 })
 export class AppModule { }
